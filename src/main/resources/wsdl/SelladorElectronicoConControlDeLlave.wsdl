@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://bccr.fva.cr/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://bccr.fva.cr/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://bccr.fva.cr/">
+      <s:element name="RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedCoFirma">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="laSolicitud" type="tns:SolicitudDeFirma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SolicitudDeFirma">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:base64Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaDeReferenciaDeLaEntidad" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="HashDocumento" type="s:base64Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="IDAlgoritmoHash" type="tns:AlgoritmoDeHash" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodNegocio" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdFuncionalidad" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="AlgoritmoDeHash">
+        <s:restriction base="s:string">
+          <s:enumeration value="Sha256" />
+          <s:enumeration value="Sha384" />
+          <s:enumeration value="Sha512" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedCoFirmaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedCoFirmaResult" type="tns:RespuestaDeLaSolicitud" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RespuestaDeLaSolicitud">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentoFirmado" type="s:base64Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="FueExitosa" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodigoDeError" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="HashDocumentoFirmado" type="s:base64Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="IDAlgoritmoHashDocumentoFirmado" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedContraFirma">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="laSolicitud" type="tns:SolicitudDeFirma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedContraFirmaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedContraFirmaResult" type="tns:RespuestaDeLaSolicitud" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecibaLaSolicitudDeSelladoElectronicoMSOffice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="laSolicitud" type="tns:SolicitudDeFirma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecibaLaSolicitudDeSelladoElectronicoMSOfficeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecibaLaSolicitudDeSelladoElectronicoMSOfficeResult" type="tns:RespuestaDeLaSolicitud" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecibaLaSolicitudDeSelladoElectronicoPdf">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="laSolicitud" type="tns:SolicitudDeFirmaPdf" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SolicitudDeFirmaPdf">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:SolicitudDeFirma">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Razon" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Lugar" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="RecibaLaSolicitudDeSelladoElectronicoPdfResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecibaLaSolicitudDeSelladoElectronicoPdfResult" type="tns:RespuestaDeLaSolicitud" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecibaLaSolicitudDeSelladoElectronicoOdf">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="laSolicitud" type="tns:SolicitudDeFirma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecibaLaSolicitudDeSelladoElectronicoOdfResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecibaLaSolicitudDeSelladoElectronicoOdfResult" type="tns:RespuestaDeLaSolicitud" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ElServicioEstaDisponible">
+        <s:complexType />
+      </s:element>
+      <s:element name="ElServicioEstaDisponibleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ElServicioEstaDisponibleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedCoFirmaSoapIn">
+    <wsdl:part name="parameters" element="tns:RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedCoFirma" />
+  </wsdl:message>
+  <wsdl:message name="RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedCoFirmaSoapOut">
+    <wsdl:part name="parameters" element="tns:RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedCoFirmaResponse" />
+  </wsdl:message>
+  <wsdl:message name="RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedContraFirmaSoapIn">
+    <wsdl:part name="parameters" element="tns:RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedContraFirma" />
+  </wsdl:message>
+  <wsdl:message name="RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedContraFirmaSoapOut">
+    <wsdl:part name="parameters" element="tns:RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedContraFirmaResponse" />
+  </wsdl:message>
+  <wsdl:message name="RecibaLaSolicitudDeSelladoElectronicoMSOfficeSoapIn">
+    <wsdl:part name="parameters" element="tns:RecibaLaSolicitudDeSelladoElectronicoMSOffice" />
+  </wsdl:message>
+  <wsdl:message name="RecibaLaSolicitudDeSelladoElectronicoMSOfficeSoapOut">
+    <wsdl:part name="parameters" element="tns:RecibaLaSolicitudDeSelladoElectronicoMSOfficeResponse" />
+  </wsdl:message>
+  <wsdl:message name="RecibaLaSolicitudDeSelladoElectronicoPdfSoapIn">
+    <wsdl:part name="parameters" element="tns:RecibaLaSolicitudDeSelladoElectronicoPdf" />
+  </wsdl:message>
+  <wsdl:message name="RecibaLaSolicitudDeSelladoElectronicoPdfSoapOut">
+    <wsdl:part name="parameters" element="tns:RecibaLaSolicitudDeSelladoElectronicoPdfResponse" />
+  </wsdl:message>
+  <wsdl:message name="RecibaLaSolicitudDeSelladoElectronicoOdfSoapIn">
+    <wsdl:part name="parameters" element="tns:RecibaLaSolicitudDeSelladoElectronicoOdf" />
+  </wsdl:message>
+  <wsdl:message name="RecibaLaSolicitudDeSelladoElectronicoOdfSoapOut">
+    <wsdl:part name="parameters" element="tns:RecibaLaSolicitudDeSelladoElectronicoOdfResponse" />
+  </wsdl:message>
+  <wsdl:message name="ElServicioEstaDisponibleSoapIn">
+    <wsdl:part name="parameters" element="tns:ElServicioEstaDisponible" />
+  </wsdl:message>
+  <wsdl:message name="ElServicioEstaDisponibleSoapOut">
+    <wsdl:part name="parameters" element="tns:ElServicioEstaDisponibleResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SelladorElectronicoConControlDeLlaveSoap">
+    <wsdl:operation name="RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedCoFirma">
+      <wsdl:input message="tns:RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedCoFirmaSoapIn" />
+      <wsdl:output message="tns:RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedCoFirmaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedContraFirma">
+      <wsdl:input message="tns:RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedContraFirmaSoapIn" />
+      <wsdl:output message="tns:RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedContraFirmaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RecibaLaSolicitudDeSelladoElectronicoMSOffice">
+      <wsdl:input message="tns:RecibaLaSolicitudDeSelladoElectronicoMSOfficeSoapIn" />
+      <wsdl:output message="tns:RecibaLaSolicitudDeSelladoElectronicoMSOfficeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RecibaLaSolicitudDeSelladoElectronicoPdf">
+      <wsdl:input message="tns:RecibaLaSolicitudDeSelladoElectronicoPdfSoapIn" />
+      <wsdl:output message="tns:RecibaLaSolicitudDeSelladoElectronicoPdfSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RecibaLaSolicitudDeSelladoElectronicoOdf">
+      <wsdl:input message="tns:RecibaLaSolicitudDeSelladoElectronicoOdfSoapIn" />
+      <wsdl:output message="tns:RecibaLaSolicitudDeSelladoElectronicoOdfSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ElServicioEstaDisponible">
+      <wsdl:input message="tns:ElServicioEstaDisponibleSoapIn" />
+      <wsdl:output message="tns:ElServicioEstaDisponibleSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SelladorElectronicoConControlDeLlaveSoap" type="tns:SelladorElectronicoConControlDeLlaveSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedCoFirma">
+      <soap:operation soapAction="http://bccr.fva.cr/RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedCoFirma" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedContraFirma">
+      <soap:operation soapAction="http://bccr.fva.cr/RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedContraFirma" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecibaLaSolicitudDeSelladoElectronicoMSOffice">
+      <soap:operation soapAction="http://bccr.fva.cr/RecibaLaSolicitudDeSelladoElectronicoMSOffice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecibaLaSolicitudDeSelladoElectronicoPdf">
+      <soap:operation soapAction="http://bccr.fva.cr/RecibaLaSolicitudDeSelladoElectronicoPdf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecibaLaSolicitudDeSelladoElectronicoOdf">
+      <soap:operation soapAction="http://bccr.fva.cr/RecibaLaSolicitudDeSelladoElectronicoOdf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ElServicioEstaDisponible">
+      <soap:operation soapAction="http://bccr.fva.cr/ElServicioEstaDisponible" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SelladorElectronicoConControlDeLlaveSoap12" type="tns:SelladorElectronicoConControlDeLlaveSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedCoFirma">
+      <soap12:operation soapAction="http://bccr.fva.cr/RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedCoFirma" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedContraFirma">
+      <soap12:operation soapAction="http://bccr.fva.cr/RecibaLaSolicitudDeSelladoElectronicoXmlEnvelopedContraFirma" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecibaLaSolicitudDeSelladoElectronicoMSOffice">
+      <soap12:operation soapAction="http://bccr.fva.cr/RecibaLaSolicitudDeSelladoElectronicoMSOffice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecibaLaSolicitudDeSelladoElectronicoPdf">
+      <soap12:operation soapAction="http://bccr.fva.cr/RecibaLaSolicitudDeSelladoElectronicoPdf" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecibaLaSolicitudDeSelladoElectronicoOdf">
+      <soap12:operation soapAction="http://bccr.fva.cr/RecibaLaSolicitudDeSelladoElectronicoOdf" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ElServicioEstaDisponible">
+      <soap12:operation soapAction="http://bccr.fva.cr/ElServicioEstaDisponible" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SelladorElectronicoConControlDeLlave">
+    <wsdl:port name="SelladorElectronicoConControlDeLlaveSoap" binding="tns:SelladorElectronicoConControlDeLlaveSoap">
+      <soap:address location="http://localhost:48235/WebServices/Bccr.Firma.Fva.Entidades.Sello.Ws.SI/SelladorElectronicoConControlDeLlave.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SelladorElectronicoConControlDeLlaveSoap12" binding="tns:SelladorElectronicoConControlDeLlaveSoap12">
+      <soap12:address location="http://localhost:48235/WebServices/Bccr.Firma.Fva.Entidades.Sello.Ws.SI/SelladorElectronicoConControlDeLlave.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
