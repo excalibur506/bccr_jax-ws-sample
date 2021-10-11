@@ -4,7 +4,7 @@ Este proyecto se hizo con la motivación de servir de guía a quienes quieran co
 Que requieran autenticación SSL del cliente.
 
 Utiliza 
-Apache Spring Boot https://spring.io/
+Spring Boot Application https://spring.io/
 
 Basado en el tutorial https://spring.io/guides/gs/consuming-web-service/
 
